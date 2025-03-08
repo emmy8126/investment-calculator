@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finna Investment Growth Calculator</title>
+    <link rel="stylesheet" href="testcss.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Finna Investment Growth Calculator</h2>
+        <p>Hey Finna, how may I help you?</p>
+        <div class="input-group">
+            <label>Monthly Investment (₹)</label>
+            <input type="number" id="investment" value="10000">
+        </div>
+        <div class="input-group">
+            <label>Sector</label>
+            <select id="sector">
+                <option value="Equities">Equities</option>
+                <option value="RealEstate">Real Estate</option>
+                <option value="DigitalAssets">Digital Assets</option>
+                <option value="Startups">Startups</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Investment Duration (Years)</label>
+            <input type="number" id="years" value="5">
+        </div>
+        <button onclick="calculateReturns()">Calculate Returns</button>
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        function calculateReturns() {
+            const investment = Number(document.getElementById("investment").value);
+            const sector = document.getElementById("sector").value;
+            const years = Number(document.getElementById("years").value);
+            
+            const sectorGrowthRates = {
+                Equities: 0.12,
+                RealEstate: 0.08,
+                DigitalAssets: 0.15,
+                Startups: 0.20,
+            };
+            
+            const rate = sectorGrowthRates[sector] || 0.10;
+            const futureValue = investment * Math.pow(1 + rate, years);
+            
+            document.getElementById("result").innerHTML = <strong>Projected Portfolio Value: ₹${futureValue.toFixed(2)}</strong>;
+        }
+    </script>
+</body>
+</html>
